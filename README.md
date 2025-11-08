@@ -23,3 +23,7 @@ curl http://localhost:4200/health
 ```sh
 claude mcp add --transport http ch-http http://localhost:4200/mcp
 ```
+
+# Notes
+
+мне не понравилось что зависимостей очень много и большинство из них не то чтобы прям обязательные. Venv весит ~0.4GB.

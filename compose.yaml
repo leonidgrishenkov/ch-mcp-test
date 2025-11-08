@@ -36,6 +36,7 @@ services:
       - CLICKHOUSE_MCP_SERVER_TRANSPORT=http
       - CLICKHOUSE_MCP_BIND_PORT=4200
       - CLICKHOUSE_MCP_BIND_HOST=0.0.0.0 # bind to all network interfaces
+      - CHDB_ENABLED=false
     command: |
       uv run mcp-clickhouse
     healthcheck:
@@ -50,4 +51,3 @@ networks:
 
 volumes:
   clickhouse-data:
-
