@@ -1,6 +1,6 @@
 services:
   clickhouse:
-    image: clickhouse/clickhouse-server:latest
+    image: clickhouse:25.10.1.3832-jammy
     networks:
       - mcp-net
     container_name: clickhouse
@@ -9,10 +9,16 @@ services:
       - "9000:9000"
     volumes:
       - clickhouse-data:/var/lib/clickhouse
+      - ./ch/create-mcp-user.sql:/docker-entrypoint-initdb.d/create-mcp-user.sql
     environment:
       - CLICKHOUSE_USER=default
       - CLICKHOUSE_PASSWORD=qwerty123
-      - CLICKHOUSE_DB=default
+      - CLICKHOUSE_DB=test
+      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
   mcp:
     build:
       context: .
@@ -27,7 +33,7 @@ services:
     environment:
       - CLICKHOUSE_HOST=clickhouse
       - CLICKHOUSE_PORT=8123
-      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_USER=mcp_user # эта УЗ создается с initial скрипте: ./ch/create-mcp-user.sql
       - CLICKHOUSE_PASSWORD=qwerty123
       - CLICKHOUSE_SECURE=false
       - CLICKHOUSE_VERIFY=false

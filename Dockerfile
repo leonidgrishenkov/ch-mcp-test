@@ -16,5 +16,3 @@ ENV PATH="/root/.local/bin:$PATH"
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && uv venv --python $(which python3) \
     && uv sync
-
-EXPOSE 4200
