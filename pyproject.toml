@@ -6,5 +6,6 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "mcp-clickhouse>=0.1.12",
-    "pyarrow==22.0.0"
+    "pyarrow==22.0.0", 
+    "mcpo>=0.0.19",
 ]

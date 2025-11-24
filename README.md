@@ -11,4 +11,3 @@ docker compose up -d --build
 ```sh
 claude mcp add --transport http ch-http http://localhost:4200/mcp
 ```
-
